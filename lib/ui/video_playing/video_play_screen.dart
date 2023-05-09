@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:io';
 
@@ -64,7 +63,7 @@ class _VideoShowingPage extends State<VideoShowingPage> {
   }
 
   //orientation for land to protrait
-  
+
   setPlayingOrientation() async {
     await controller.play();
 
@@ -89,8 +88,8 @@ class _VideoShowingPage extends State<VideoShowingPage> {
     storeLastPlayed();
 
     setAllOrientationToDefault();
-    // addToPlayedHistory(playingVideoPath, controller.value.position.inSeconds,
-    //     controller.value.duration.inSeconds);
+    addToPlayedHistory(playingVideoPath, controller.value.position.inSeconds,
+        controller.value.duration.inSeconds);
     controller.dispose();
 
     super.dispose();
@@ -340,6 +339,10 @@ class _VideoShowingPage extends State<VideoShowingPage> {
                   color: Colors.white,
                 ),
                 onPressed: () {
+                  addToPlayedHistory(
+                      playingVideoPath,
+                      controller.value.position.inSeconds,
+                      controller.value.duration.inSeconds);
                   isVisible = false;
                   isVisible = true;
                   if (widget.index > 0) {
@@ -386,12 +389,17 @@ class _VideoShowingPage extends State<VideoShowingPage> {
                   color: Colors.white,
                 ),
                 onPressed: () {
+                  //adding to database for history
+                  addToPlayedHistory(
+                      playingVideoPath,
+                      controller.value.position.inSeconds,
+                      controller.value.duration.inSeconds);
                   isVisible = false;
                   isVisible = true;
                   if (widget.index < widget.fromList.length - 1) {
                     widget.index++;
                     controller.pause();
-                    //..................................kodukanam
+                    //...............................
 
                     playingVideoPath = widget.fromList[widget.index];
                     controller =
@@ -424,7 +432,7 @@ class _VideoShowingPage extends State<VideoShowingPage> {
                   icon: const Icon(
                     Icons.screen_rotation,
                     color: Colors.white,
-                  )),
+                  ))
             ],
           ),
         ],

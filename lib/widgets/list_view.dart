@@ -1,5 +1,3 @@
-
-
 import 'dart:developer';
 
 import 'package:VIDFLIX/functions/all_functions.dart';
@@ -151,7 +149,7 @@ class ListViewWidgetForPlaylist extends StatelessWidget {
                 },
                 leading: const Icon(
                   Icons.playlist_play,
-                  color: Colors.purpleAccent,
+                  color: Color.fromARGB(255, 212, 14, 0),
                   size: 60,
                 ),
                 title: Text(
@@ -204,95 +202,102 @@ class ListViewWidgetForInnerPlaylist extends StatelessWidget {
   String fromPlaylistName;
   @override
   Widget build(BuildContext context) {
-    return playlist[fromPlaylistName]!.isEmpty
-        ? Center(
-            child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(
-                Icons.mood_bad_sharp,
-                color: Color.fromARGB(255, 208, 14, 0),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                'No Videos In This Playlist',
-                style: TextStyle(fontSize: 20),
-              ),
-            ],
-          ))
-        : Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    //liked and playlist
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => VideoShowingPage(
-                                fromList: playlist[fromPlaylistName]!,
-                                index: index,
-                                seekFrom: 0,
-                              )));
-                    },
-                    leading: ClipRRect(
-                      borderRadius: BorderRadius.circular(7),
-                      child: Stack(
-                        children: [
-                          Container(
-                            color: Colors.black,
-                            height: 95,
-                            width: 100,
-                            child: ThumbnailWidget(
-                                videoPath: playlist[fromPlaylistName]![index]),
-                          ),
-                          Positioned(
-                              bottom: 5,
-                              right: 5,
-                              child: VideoDuration(
-                                videoPath: playlist[fromPlaylistName]![index],
-                              ))
+    return Scaffold(
+      backgroundColor: mainBGColor,
+      appBar: AppBar(
+        backgroundColor: AppBarColor,
+      ),
+      body: playlist[fromPlaylistName]!.isEmpty
+          ? Center(
+              child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.mood_bad_sharp,
+                  color: Color.fromARGB(255, 208, 14, 0),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  'No Videos In This Playlist',
+                  style: TextStyle(fontSize: 20, color: allTextColor),
+                ),
+              ],
+            ))
+          : Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      //liked and playlist
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => VideoShowingPage(
+                                  fromList: playlist[fromPlaylistName]!,
+                                  index: index,
+                                  seekFrom: 0,
+                                )));
+                      },
+                      leading: ClipRRect(
+                        borderRadius: BorderRadius.circular(7),
+                        child: Stack(
+                          children: [
+                            Container(
+                              color: Colors.black,
+                              height: 95,
+                              width: 100,
+                              child: ThumbnailWidget(
+                                  videoPath:
+                                      playlist[fromPlaylistName]![index]),
+                            ),
+                            Positioned(
+                                bottom: 5,
+                                right: 5,
+                                child: VideoDuration(
+                                  videoPath: playlist[fromPlaylistName]![index],
+                                ))
+                          ],
+                        ),
+                      ),
+                      title: Text(
+                        getVideoName(playlist[fromPlaylistName]![index]),
+                        style: TextStyle(color: allTextColor),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      trailing: PopupMenuButton(
+                        icon: const Icon(
+                          Icons.more_vert,
+                          color: Colors.grey,
+                        ),
+                        color: mainBGColor,
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            child: Text(
+                              'Remove From Playlist',
+                              style: TextStyle(color: allTextColor),
+                            ),
+                            onTap: () {
+                              log('video Removed From "$fromPlaylistName"');
+                              snackBarMessage(context,
+                                  'video Removed From "$fromPlaylistName"');
+
+                              deleteVideoFromPlaylist(index, fromPlaylistName);
+                            },
+                          )
                         ],
                       ),
-                    ),
-                    title: Text(
-                      getVideoName(playlist[fromPlaylistName]![index]),
-                      style: TextStyle(color: allTextColor),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    trailing: PopupMenuButton(
-                      icon: const Icon(
-                        Icons.more_vert,
-                        color: Colors.grey,
-                      ),
-                      color: mainBGColor,
-                      itemBuilder: (context) => [
-                        PopupMenuItem(
-                          child: Text(
-                            'Remove From Playlist',
-                            style: TextStyle(color: allTextColor),
-                          ),
-                          onTap: () {
-                            log('video Removed From "$fromPlaylistName"');
-                            snackBarMessage(context,
-                                'video Removed From "$fromPlaylistName"');
-
-                            deleteVideoFromPlaylist(index, fromPlaylistName);
-                          },
-                        )
-                      ],
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return Divider(
-                    color: allTextColor,
-                  );
-                },
-                itemCount: playlist[fromPlaylistName]?.length ?? 0),
-          );
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      color: allTextColor,
+                    );
+                  },
+                  itemCount: playlist[fromPlaylistName]?.length ?? 0),
+            ),
+    );
   }
 }

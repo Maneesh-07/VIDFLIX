@@ -51,7 +51,7 @@ Future<dynamic> showDialougeOfPlaylist(BuildContext context,
           height: MediaQuery.of(context).size.height * .50,
           width: MediaQuery.of(context).size.height * .40,
           child: Card(
-            color: Colors.white,
+            color: mainBGColor,
             child: Padding(
               padding: const EdgeInsets.all(15),
               child: Column(
@@ -60,7 +60,8 @@ Future<dynamic> showDialougeOfPlaylist(BuildContext context,
                     controller: playlistController,
                     decoration: const InputDecoration(
                         labelText: 'Playlist Name',
-                        labelStyle: TextStyle(color: Colors.blueAccent),
+                        labelStyle:
+                            TextStyle(color: Color.fromARGB(255, 217, 14, 0)),
                         border: OutlineInputBorder()),
                     style: TextStyle(color: allTextColor),
                   ),
@@ -94,7 +95,7 @@ Future<dynamic> showDialougeOfPlaylist(BuildContext context,
                                 children: [
                                   const Icon(
                                     Icons.mood_bad_sharp,
-                                    color: Colors.blueAccent,
+                                    color: Color.fromARGB(255, 218, 15, 0),
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -102,7 +103,7 @@ Future<dynamic> showDialougeOfPlaylist(BuildContext context,
                                   Text(
                                     'No Playlist',
                                     style: TextStyle(
-                                        fontSize: 20, color: allTextColor),
+                                        fontSize: 20, color: mainBGColor),
                                   ),
                                 ],
                               ))
@@ -110,7 +111,7 @@ Future<dynamic> showDialougeOfPlaylist(BuildContext context,
                                 physics: const BouncingScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   return ListTile(
-                                    tileColor: Colors.lightBlue[50],
+                                    tileColor: Colors.grey,
                                     onTap: () {
                                       if (!playlist[playlistKey[index]]!
                                           .contains(listFrom[videoIndex])) {
@@ -123,9 +124,13 @@ Future<dynamic> showDialougeOfPlaylist(BuildContext context,
                                                 playlist[playlistKey[index]]!);
                                         playlistBox.putAt(
                                             index, playlistModel); //hive
-                                        log('Successfully Added To "${playlistKey[index]}"');
-                                        snackBarMessage(context,
-                                            'Successfully Added To "${playlistKey[index]}"');
+                                        log(
+                                          'Successfully Added To "${playlistKey[index]}"',
+                                        );
+                                        snackBarMessage(
+                                          context,
+                                          'Successfully Added To "${playlistKey[index]}"',
+                                        );
                                       } else {
                                         log('Already Contains');
                                         snackBarMessage(
@@ -175,12 +180,12 @@ void snackBarMessage(BuildContext context, String message) {
         child: Text(
           message,
           style: const TextStyle(
-              color: Colors.blueAccent,
+              color: Color.fromARGB(255, 217, 14, 0),
               fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: mainBGColor,
       elevation: 5,
     ));
 }
@@ -279,8 +284,7 @@ class VideoDuration extends StatelessWidget {
     final videoInfo = FlutterVideoInfo();
     var info = await videoInfo.getVideoInfo(videoPath);
 
-     return convertMillisecondsToTime(info!.duration!.toInt());
-
+    return convertMillisecondsToTime(info!.duration!.toInt());
   }
 }
 

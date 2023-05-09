@@ -1,4 +1,3 @@
-
 import 'package:VIDFLIX/functions/all_functions.dart';
 import 'package:VIDFLIX/functions/thumbnail.dart';
 import 'package:VIDFLIX/model/model_file.dart';
@@ -119,7 +118,8 @@ class ScreenHistory extends StatelessWidget {
                                         overlayRadius: 0),
                                     thumbShape: RoundSliderThumbShape(
                                         enabledThumbRadius: 0),
-                                    activeTrackColor: Colors.purple,
+                                    activeTrackColor:
+                                        Color.fromARGB(255, 213, 14, 0),
                                   ),
                                   child: Slider(
                                     value: playedHistoryBox.values

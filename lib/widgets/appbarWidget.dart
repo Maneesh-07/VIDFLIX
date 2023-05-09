@@ -1,4 +1,3 @@
-
 import 'package:VIDFLIX/functions/all_functions.dart';
 import 'package:VIDFLIX/ui/recent_history.dart';
 import 'package:VIDFLIX/ui/search_page/searchpage.dart';
@@ -174,18 +173,16 @@ class _NewappbarWidgetsState01 extends State<NewappbarWidgets01> {
                 color: mainBGColor,
                 itemBuilder: (context) => [
                   PopupMenuItem(
-                    value: 0,
                     child:
-                        Text('History', style: TextStyle(color: allTextColor)),
-                  ),
+                        Text('Refresh', style: TextStyle(color: allTextColor)),
+                    onTap: () {
+                      favoritesVideoNotify.value.clear();
+                      playlist.clear();
+                      playlistKey.clear();
+                      isListView.notifyListeners();
+                    },
+                  )
                 ],
-                onSelected: (value) {
-                  if (value == 0) {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ScreenHistory(),
-                    ));
-                  }
-                },
               )
             ],
           ),

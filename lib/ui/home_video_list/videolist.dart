@@ -1,5 +1,3 @@
-
-
 import 'package:VIDFLIX/functions/all_functions.dart';
 import 'package:VIDFLIX/ui/setting_page_screen/setting_page.dart';
 import 'package:VIDFLIX/widgets/appbarWidget.dart';
@@ -35,7 +33,7 @@ class _HomeVideolistState extends State<HomeVideolist> {
                   child: ListViewWidgetForAllVideos(),
                 )
               : GridViewWidgetForAllVideos(),
-          floatingActionButton: ResumeButton(),
+          // floatingActionButton: ResumeButton(),
         );
       },
     );

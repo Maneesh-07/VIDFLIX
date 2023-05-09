@@ -1,3 +1,4 @@
+import 'package:VIDFLIX/functions/all_functions.dart';
 import 'package:VIDFLIX/ui/browse_page/browsefavoritepage.dart';
 import 'package:VIDFLIX/ui/home_video_list/videolist.dart';
 import 'package:VIDFLIX/ui/more_page/morepage.dart';
@@ -66,7 +67,10 @@ class _HomescreenState extends State<Homescreen> {
                   label: 'More',
                 ),
               ],
-            ));
+              
+            ),
+            floatingActionButton: ResumeButton(),
+            );
       },
     );
   }

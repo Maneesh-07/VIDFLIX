@@ -16,7 +16,7 @@ class ThumbnailWidget extends StatelessWidget {
         return snapshot.hasData
             ? Image.file(
                 File(snapshot.data!),
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               )
             : Padding(
                 padding: EdgeInsets.fromLTRB(25, 15, 25, 15),

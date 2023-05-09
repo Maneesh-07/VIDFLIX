@@ -1,4 +1,3 @@
-
 import 'package:VIDFLIX/functions/all_functions.dart';
 import 'package:VIDFLIX/functions/thumbnail.dart';
 import 'package:VIDFLIX/ui/setting_page_screen/setting_page.dart';
@@ -22,7 +21,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             children: [
               const Icon(
                 Icons.mood_bad_sharp,
-                color: Colors.blueAccent,
+                color: Color.fromARGB(255, 209, 14, 0),
               ),
               const SizedBox(
                 height: 10,

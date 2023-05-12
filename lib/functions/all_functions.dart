@@ -14,8 +14,6 @@ ValueNotifier<List> allVideos = ValueNotifier([]);
 
 ValueNotifier<List<String>> favoritesVideoNotify = ValueNotifier([]);
 
-List<String> allFolders = [];
-
 Map<String, List<String>> playlist = {};
 
 List<String> playlistKey = [];
@@ -173,13 +171,13 @@ void snackBarMessage(BuildContext context, String message) {
   ScaffoldMessenger.of(context)
     ..removeCurrentSnackBar()
     ..showSnackBar(SnackBar(
-      width: 240,
+      width: 230,
       behavior: SnackBarBehavior.floating,
       duration: const Duration(seconds: 1),
       content: Center(
         child: Text(
           message,
-          style: const TextStyle(
+          style: TextStyle(
               color: Color.fromARGB(255, 217, 14, 0),
               fontSize: 18,
               fontWeight: FontWeight.bold),
@@ -232,7 +230,7 @@ void addLikedVideo(BuildContext context, String video) async {
     favoritesVideoNotify.value.add(video);
 
     log('Successfully added to liked videos');
-    snackBarMessage(context, 'Successfully Added To Liked Videos');
+    snackBarMessage(context, 'Successfully Added To Favorites Videos');
     favoritesVideoNotify.notifyListeners();
 
     return;

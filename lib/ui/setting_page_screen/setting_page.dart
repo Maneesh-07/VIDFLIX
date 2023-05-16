@@ -1,4 +1,3 @@
-
 import 'package:VIDFLIX/dialoge/policy_dialogue.dart';
 import 'package:VIDFLIX/dialoge/termsandconditions.dart';
 import 'package:VIDFLIX/widgets/appbarWidget.dart';
@@ -45,11 +44,11 @@ class _settingOptionState extends State<settingOption> {
             title: Text("Setting"),
           ),
           body: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(top: 15.0),
             child: ListView(
               children: [
                 ListTile(
-                  leading: Text('Share App',
+                  title: Text('Share App',
                       style: TextStyle(
                           fontSize: 20,
                           color: allTextColor,
@@ -60,42 +59,7 @@ class _settingOptionState extends State<settingOption> {
                   ),
                 ),
                 SizedBox(
-                  height: 2,
-                ),
-                ListTile(
-                  leading: Text(
-                    'Light Theme',
-                    style: TextStyle(
-                        color: allTextColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  trailing: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Switch(
-                        value: isDarkMode.value,
-                        onChanged: (value) {
-                          setState(() {
-                            if (isDarkMode.value == true) {
-                              isDarkMode.value = false;
-                              mainBGColor = Color.fromARGB(255, 26, 26, 26);
-                              allTextColor = Colors.white;
-                              bottomNavColor = Colors.black;
-                              AppBarColor = Colors.black;
-                              containerColor = Colors.black;
-                            } else {
-                              isDarkMode.value = true;
-                              mainBGColor = Color.fromARGB(255, 250, 250, 250);
-                              allTextColor = Colors.black;
-                              bottomNavColor =
-                                  Color.fromARGB(255, 128, 118, 118);
-                              AppBarColor = Colors.grey;
-                              containerColor = Colors.white;
-                            }
-                            isListView.notifyListeners();
-                          });
-                        }),
-                  ),
+                  height: 10,
                 ),
                 ListTile(
                   onTap: () {
@@ -112,10 +76,9 @@ class _settingOptionState extends State<settingOption> {
                           fontSize: 20,
                           color: allTextColor,
                           fontWeight: FontWeight.w500)),
-                  trailing: Icon(
-                    Icons.book_outlined,
-                    color: allTextColor,
-                  ),
+                ),
+                SizedBox(
+                  height: 10,
                 ),
                 ListTile(
                   onTap: () {
@@ -131,9 +94,49 @@ class _settingOptionState extends State<settingOption> {
                           fontSize: 20,
                           color: allTextColor,
                           fontWeight: FontWeight.w500)),
-                  trailing: Icon(
-                    Icons.privacy_tip_outlined,
-                    color: allTextColor,
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ListTile(
+                  leading: Text(
+                    'Light Theme',
+                    style: TextStyle(
+                        color: allTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Padding(
+                    padding: const EdgeInsets.only(
+                      right: 0,
+                    ),
+                    child: SizedBox(
+                      width: 30,
+                      child: Switch(
+                          value: isDarkMode.value,
+                          onChanged: (value) {
+                            setState(() {
+                              if (isDarkMode.value == true) {
+                                isDarkMode.value = false;
+                                mainBGColor = Color.fromARGB(255, 26, 26, 26);
+                                allTextColor = Colors.white;
+                                bottomNavColor = Colors.black;
+                                AppBarColor = Colors.black;
+                                containerColor = Colors.black;
+                              } else {
+                                isDarkMode.value = true;
+                                mainBGColor =
+                                    Color.fromARGB(255, 250, 250, 250);
+                                allTextColor = Colors.black;
+                                bottomNavColor =
+                                    Color.fromARGB(255, 128, 118, 118);
+                                AppBarColor = Colors.grey;
+                                containerColor = Colors.white;
+                              }
+                              isListView.notifyListeners();
+                            });
+                          }),
+                    ),
                   ),
                 ),
               ],

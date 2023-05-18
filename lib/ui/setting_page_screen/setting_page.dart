@@ -48,6 +48,47 @@ class _settingOptionState extends State<settingOption> {
             child: ListView(
               children: [
                 ListTile(
+                  leading: Text(
+                    'Light Theme',
+                    style: TextStyle(
+                        color: allTextColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  trailing: Padding(
+                    padding: const EdgeInsets.only(
+                      right: 0,
+                    ),
+                    child: SizedBox(
+                      width: 30,
+                      child: Switch(
+                          value: isDarkMode.value,
+                          onChanged: (value) {
+                            setState(() {
+                              if (isDarkMode.value == true) {
+                                isDarkMode.value = false;
+                                mainBGColor = Color.fromARGB(255, 26, 26, 26);
+                                allTextColor = Colors.white;
+                                bottomNavColor = Colors.black;
+                                AppBarColor = Colors.black;
+                                containerColor = Colors.black;
+                              } else {
+                                isDarkMode.value = true;
+                                mainBGColor =
+                                    Color.fromARGB(255, 250, 250, 250);
+                                allTextColor = Colors.black;
+                                bottomNavColor =
+                                    Color.fromARGB(255, 128, 118, 118);
+                                AppBarColor = Colors.grey;
+                                containerColor = Colors.white;
+                              }
+                              isListView.notifyListeners();
+                            });
+                          }),
+                    ),
+                  ),
+                ),
+                ListTile(
                   title: Text('Share App',
                       style: TextStyle(
                           fontSize: 20,
@@ -97,47 +138,6 @@ class _settingOptionState extends State<settingOption> {
                 ),
                 SizedBox(
                   height: 10,
-                ),
-                ListTile(
-                  leading: Text(
-                    'Light Theme',
-                    style: TextStyle(
-                        color: allTextColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  trailing: Padding(
-                    padding: const EdgeInsets.only(
-                      right: 0,
-                    ),
-                    child: SizedBox(
-                      width: 30,
-                      child: Switch(
-                          value: isDarkMode.value,
-                          onChanged: (value) {
-                            setState(() {
-                              if (isDarkMode.value == true) {
-                                isDarkMode.value = false;
-                                mainBGColor = Color.fromARGB(255, 26, 26, 26);
-                                allTextColor = Colors.white;
-                                bottomNavColor = Colors.black;
-                                AppBarColor = Colors.black;
-                                containerColor = Colors.black;
-                              } else {
-                                isDarkMode.value = true;
-                                mainBGColor =
-                                    Color.fromARGB(255, 250, 250, 250);
-                                allTextColor = Colors.black;
-                                bottomNavColor =
-                                    Color.fromARGB(255, 128, 118, 118);
-                                AppBarColor = Colors.grey;
-                                containerColor = Colors.white;
-                              }
-                              isListView.notifyListeners();
-                            });
-                          }),
-                    ),
-                  ),
                 ),
               ],
             ),

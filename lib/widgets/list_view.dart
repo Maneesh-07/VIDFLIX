@@ -205,6 +205,7 @@ class ListViewWidgetForInnerPlaylist extends StatelessWidget {
     return Scaffold(
       backgroundColor: mainBGColor,
       appBar: AppBar(
+        title: Image.asset('assets/images/vidflix.png'),
         backgroundColor: AppBarColor,
       ),
       body: playlist[fromPlaylistName]!.isEmpty

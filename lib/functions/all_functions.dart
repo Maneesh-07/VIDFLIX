@@ -132,7 +132,7 @@ Future<dynamic> showDialougeOfPlaylist(BuildContext context,
                                       } else {
                                         log('Already Contains');
                                         snackBarMessage(
-                                            context, 'Already Contains');
+                                            context, 'Already Exits');
                                       }
                                       Navigator.of(context).pop();
                                     },

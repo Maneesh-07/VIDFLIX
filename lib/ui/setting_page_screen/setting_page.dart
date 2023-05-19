@@ -2,6 +2,7 @@ import 'package:VIDFLIX/dialoge/policy_dialogue.dart';
 import 'package:VIDFLIX/dialoge/termsandconditions.dart';
 import 'package:VIDFLIX/widgets/appbarWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 ValueNotifier<bool> isDarkMode = ValueNotifier(false);
 Color? mainBGColor = Color.fromARGB(255, 26, 26, 26);
@@ -89,6 +90,12 @@ class _settingOptionState extends State<settingOption> {
                   ),
                 ),
                 ListTile(
+                  onTap: () async {
+                const urllink = 'app.VIDFLIX.video_player';
+                await Share.share(urllink);
+                // ignore: use_build_context_synchronously
+                Navigator.pop(context);
+                },
                   title: Text('Share App',
                       style: TextStyle(
                           fontSize: 20,

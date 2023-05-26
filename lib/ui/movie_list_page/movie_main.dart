@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 class MovieScreen extends StatefulWidget {
-  const MovieScreen({super.key,});
-
+  const MovieScreen({
+    super.key,
+  });
 
   @override
   State<MovieScreen> createState() => _MovieScreenState();
@@ -52,7 +53,7 @@ class _MovieScreenState extends State<MovieScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainBGColor,
+      backgroundColor: Colors.black,
       appBar: PreferredSize(
         child: MovieListAppbar(),
         preferredSize: Size.fromHeight(70.0),

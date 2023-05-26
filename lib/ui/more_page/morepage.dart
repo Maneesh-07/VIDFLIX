@@ -109,9 +109,7 @@ class _MorescreenState extends State<Morescreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 80,
-                  ),
+                  SizedBox(),
                   Row(
                     children: [
                       Padding(

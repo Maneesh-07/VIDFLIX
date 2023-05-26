@@ -1,5 +1,3 @@
-
-
 import 'package:VIDFLIX/ui/browse_page/favoriteslist.dart';
 import 'package:VIDFLIX/ui/setting_page_screen/setting_page.dart';
 import 'package:VIDFLIX/widgets/appbarWidget.dart';

@@ -59,7 +59,7 @@ class _MorescreenState extends State<Morescreen> {
                                     color: allTextColor,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "Inter",
-                                    fontSize: 18),
+                                    fontSize: 16),
                               ),
                             ),
                           ),
@@ -102,7 +102,7 @@ class _MorescreenState extends State<Morescreen> {
                                   color: allTextColor,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: "Inter",
-                                  fontSize: 18),
+                                  fontSize: 16),
                             ),
                           ),
                         ),
@@ -134,72 +134,64 @@ class _MorescreenState extends State<Morescreen> {
                     child: playedHistoryBox.isEmpty
                         ? Center(
                             child: Text(
-                            'No History',
-                            style: TextStyle(fontSize: 20, color: allTextColor),
-                          ))
+                              'No History',
+                              style:
+                                  TextStyle(fontSize: 20, color: allTextColor),
+                            ),
+                          )
                         : ValueListenableBuilder(
                             valueListenable: VideoHistoryListNotifier,
                             builder: (context, value, child) => Padding(
-                              padding: const EdgeInsets.all(10.0),
+                              padding: const EdgeInsets.all(1.0),
                               child: ListView.builder(
-                                itemExtent: 200,
                                 itemCount: playedHistoryBox.length,
                                 shrinkWrap: false,
-                                scrollDirection: Axis.horizontal,
+                                scrollDirection:
+                                    Axis.vertical, // Changed to vertical
                                 itemBuilder: (context, index) {
-                                  return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(7),
-                                        child: Stack(
-                                          children: [
-                                            InkWell(
-                                              onTap: () {
-                                                Navigator.of(context)
-                                                    .push(MaterialPageRoute(
-                                                  builder: (context) => VideoShowingPage(
-                                                      index: 0,
-                                                      fromList: [
-                                                        playedHistoryBox.values
-                                                            .elementAt(
-                                                                playedHistoryBox
-                                                                        .length -
-                                                                    1 -
-                                                                    index)
-                                                            .video
-                                                      ],
-                                                      seekFrom: playedHistoryBox
-                                                          .values
-                                                          .elementAt(
-                                                              playedHistoryBox
-                                                                      .length -
-                                                                  1 -
-                                                                  index)
-                                                          .position),
-                                                ));
-                                              },
-                                              child: Container(
-                                                color: Colors.black,
-                                                height: 100,
-                                                width: 180,
-                                                child: ThumbnailWidget(
-                                                    videoPath: playedHistoryBox
-                                                        .values
-                                                        .elementAt(
-                                                            playedHistoryBox
-                                                                    .length -
-                                                                1 -
-                                                                index)
-                                                        .video),
-                                              ),
+                                  return Container(
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: 8, vertical: 1),
+                                    height: 70,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      // color: containerColor,
+                                    ),
+                                    child: Center(
+                                      child: ListTile(
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                VideoShowingPage(
+                                              index: 0,
+                                              fromList: [
+                                                playedHistoryBox.values
+                                                    .elementAt(playedHistoryBox
+                                                            .length -
+                                                        1 -
+                                                        index)
+                                                    .video
+                                              ],
+                                              seekFrom: playedHistoryBox.values
+                                                  .elementAt(
+                                                      playedHistoryBox.length -
+                                                          1 -
+                                                          index)
+                                                  .position,
                                             ),
-                                            Positioned(
-                                                bottom: 5,
-                                                right: 5,
-                                                child: VideoDuration(
+                                          ));
+                                        },
+                                        leading: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          child: Stack(
+                                            children: [
+                                              Container(
+                                                color: Colors.black,
+                                                height: 110,
+                                                width: 100,
+                                                child: ThumbnailWidget(
                                                   videoPath: playedHistoryBox
                                                       .values
                                                       .elementAt(
@@ -208,52 +200,66 @@ class _MorescreenState extends State<Morescreen> {
                                                               1 -
                                                               index)
                                                       .video,
-                                                )),
-                                            Positioned(
-                                              bottom: 0,
-                                              left: 0,
-                                              right: 0,
-                                              child: SliderTheme(
-                                                data: SliderTheme.of(context)
-                                                    .copyWith(
-                                                  trackHeight: 4.0,
-                                                  overlayShape:
-                                                      RoundSliderOverlayShape(
-                                                          overlayRadius: 0),
-                                                  thumbShape:
-                                                      RoundSliderThumbShape(
-                                                          enabledThumbRadius:
-                                                              0),
-                                                  activeTrackColor:
-                                                      Color.fromARGB(
-                                                          255, 213, 14, 0),
-                                                ),
-                                                child: Slider(
-                                                  value: playedHistoryBox.values
-                                                      .elementAt(
-                                                          playedHistoryBox
-                                                                  .length -
-                                                              1 -
-                                                              index)
-                                                      .position
-                                                      .toDouble(),
-                                                  min: 0.0,
-                                                  max: playedHistoryBox.values
-                                                      .elementAt(
-                                                          playedHistoryBox
-                                                                  .length -
-                                                              1 -
-                                                              index)
-                                                      .duration
-                                                      .toDouble(),
-                                                  onChanged: (value) => {},
                                                 ),
                                               ),
-                                            )
-                                          ],
+                                              Positioned(
+                                                  bottom: 5,
+                                                  right: 5,
+                                                  child: VideoDuration(
+                                                    videoPath: playedHistoryBox
+                                                        .values
+                                                        .elementAt(
+                                                            playedHistoryBox
+                                                                    .length -
+                                                                1 -
+                                                                index)
+                                                        .video,
+                                                  )),
+                                              Positioned(
+                                                bottom: 0,
+                                                left: 0,
+                                                right: 0,
+                                                child: SliderTheme(
+                                                  data: SliderTheme.of(context)
+                                                      .copyWith(
+                                                    trackHeight: 4.0,
+                                                    overlayShape:
+                                                        RoundSliderOverlayShape(
+                                                            overlayRadius: 0),
+                                                    thumbShape:
+                                                        RoundSliderThumbShape(
+                                                            enabledThumbRadius:
+                                                                0),
+                                                    activeTrackColor:
+                                                        Color.fromARGB(
+                                                            255, 213, 14, 0),
+                                                  ),
+                                                  child: Slider(
+                                                    value: playedHistoryBox
+                                                        .values
+                                                        .elementAt(
+                                                            playedHistoryBox
+                                                                    .length -
+                                                                1 -
+                                                                index)
+                                                        .position
+                                                        .toDouble(),
+                                                    min: 0.0,
+                                                    max: playedHistoryBox.values
+                                                        .elementAt(
+                                                            playedHistoryBox
+                                                                    .length -
+                                                                1 -
+                                                                index)
+                                                        .duration
+                                                        .toDouble(),
+                                                    onChanged: (value) => {},
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      ListTile(
                                         title: Text(
                                           getVideoName(playedHistoryBox.values
                                               .elementAt(
@@ -265,8 +271,8 @@ class _MorescreenState extends State<Morescreen> {
                                           maxLines: 2,
                                           overflow: TextOverflow.ellipsis,
                                         ),
-                                      )
-                                    ],
+                                      ),
+                                    ),
                                   );
                                 },
                               ),
@@ -280,5 +286,3 @@ class _MorescreenState extends State<Morescreen> {
         });
   }
 }
-
-
